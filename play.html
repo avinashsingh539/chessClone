@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Play Chess | ChessClone</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-3" href="index.html">♟ ChessClone</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="leaderboard.html">Leaderboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="settings.html">Settings</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid mt-4">
+<div class="row">
+
+<div class="col-lg-2 mb-3">
+    <div class="card side-card">
+        <div class="card-body text-center">
+            <img src="images/avatar.png" class="player-img">
+            <h5 class="mt-3">Computer</h5>
+            <p>Rating : 1000</p>
+            <h3 id="blackTimer">10:00</h3>
+        </div>
+    </div>
+
+    <div class="card side-card mt-3">
+        <div class="card-body">
+            <h5>Captured Pieces</h5>
+            <div id="blackCaptured"></div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-7 text-center">
+
+<h3 class="mb-3 text-white">♟ Play Chess</h3>
+
+<div class="board-wrapper">
+
+<div class="board-label-top">
+<span>a</span><span>b</span><span>c</span><span>d</span>
+<span>e</span><span>f</span><span>g</span><span>h</span>
+</div>
+
+<div class="board-area">
+
+<div class="numbers">
+<span>8</span>
+<span>7</span>
+<span>6</span>
+<span>5</span>
+<span>4</span>
+<span>3</span>
+<span>2</span>
+<span>1</span>
+</div>
+
+<div id="board"></div>
+
+</div>
+
+<div class="board-label-bottom">
+<span>a</span><span>b</span><span>c</span><span>d</span>
+<span>e</span><span>f</span><span>g</span><span>h</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="card side-card">
+<div class="card-body">
+<h4>Move History</h4>
+<div id="moveHistory" class="move-box">
+<p>Game Started...</p>
+</div>
+</div>
+</div>
+
+<div class="card side-card mt-3">
+<div class="card-body">
+<h5>Controls</h5>
+
+<button class="btn btn-success w-100 mt-2" id="startGame">
+Start Game
+</button>
+
+<button class="btn btn-warning w-100 mt-2" id="restart">
+Restart
+</button>
+
+<button class="btn btn-danger w-100 mt-2" id="resign">
+Resign
+</button>
+
+</div>
+</div>
+
+<div class="card side-card mt-3">
+<div class="card-body text-center">
+<img src="images/avatar.png" class="player-img">
+<h5 class="mt-3" id="playerName">Player</h5>
+<p>Rating : 800</p>
+<h3 id="whiteTimer">10:00</h3>
+</div>
+</div>
+
+<div class="card side-card mt-3">
+<div class="card-body">
+<h5>Your Captured Pieces</h5>
+<div id="whiteCaptured"></div>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Chess.js library -->
+<script src="https://unpkg.com/chess.js@0.10.3/chess.js"></script>
+<script src="js/stats.js"></script>
+
+<!-- Board Logic -->
+<script src="js/board.js"></script>
+
+<!-- Game Over Modal -->
+<div class="modal fade" id="gameOverModal" tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h4 class="modal-title">
+                     Game Over
+                </h4>
+
+            </div>
+
+            <div class="modal-body text-center">
+
+                <h3 id="winnerText"></h3>
+
+                <p id="reasonText"></p>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn btn-success" id="playAgain">
+
+                    Play Again
+
+                </button>
+
+                <a href="profile.html" class="btn btn-primary">
+
+                    Profile
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+const settings = JSON.parse(localStorage.getItem("settings"));
+
+if(settings){
+
+    if(settings.darkMode){
+
+        document.body.classList.add("dark-theme");
+
+    }
+    else{
+
+        document.body.classList.add("light-theme");
+
+    }
+
+}
+else{
+
+    document.body.classList.add("dark-theme");
+
+}
+</script>
+</body>
+</html>
